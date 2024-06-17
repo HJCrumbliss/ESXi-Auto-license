@@ -3,16 +3,19 @@ import subprocess as sp
 import os
 import pyscreeze
 import time
+from dotenv import load_dotenv, dotenv_values
 
+
+load_dotenv()
 path = "C:\\Program Files\\PuTTY\\Putty.exe"
 sp.Popen(path)
 time.sleep(.5)
 x,y = pa.locateCenterOnScreen('Images\\ESXi.png')
 pa.doubleClick(x,y)
-pa.typewrite("root")
+pa.typewrite(os.getenv("root_user"))
 pa.press('enter')
 time.sleep(.1)
-pa.typewrite("Greenville3#")
+pa.typewrite(os.getenv("root_pw"))
 pa.press('enter')
 time.sleep(.5)
 pa.typewrite("rm -r /etc/vmware/license.cfg")
